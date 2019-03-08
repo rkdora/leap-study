@@ -1,3 +1,4 @@
+import ddf.minim.*;
 import de.voidplus.leapmotion.*;
 
 // ======================================================
@@ -8,6 +9,8 @@ import de.voidplus.leapmotion.*;
 // └─ 4. Key Tap Gesture
 // ======================================================
 
+Minim minim;
+AudioPlayer player;
 
 LeapMotion leap;
 
@@ -16,7 +19,9 @@ void setup(){
   background(255);
   textSize(50);
   fill(0);
-  // ...
+  
+  minim = new Minim(this);
+  player = minim.loadFile("punch-middle2.mp3");
 
   leap = new LeapMotion(this).allowGestures();  // All gestures
   // leap = new LeapMotion(this).allowGestures("circle, swipe, screen_tap, key_tap");
@@ -51,6 +56,8 @@ void leapOnSwipeGesture(SwipeGesture g, int state){
       println("SwipeGesture: " + id);
       background(255);
       background(255, 0, 0);
+      player.play();
+      player.rewind();
       text("SwipeGesture: " + id, width / 4, height / 2);
       break;
   }
@@ -122,4 +129,10 @@ void leapOnKeyTapGesture(KeyTapGesture g){
   println("KeyTapGesture: " + id);
   background(255);
   text("KeyTapGesture: " + id, width / 4, height / 2);
+}
+
+void stop(){
+  player.close();
+  minim.stop();
+  super.stop();
 }
