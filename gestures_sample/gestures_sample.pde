@@ -14,6 +14,8 @@ LeapMotion leap;
 void setup(){
   size(800, 500);
   background(255);
+  textSize(50);
+  fill(0);
   // ...
 
   leap = new LeapMotion(this).allowGestures();  // All gestures
@@ -22,7 +24,7 @@ void setup(){
 }
 
 void draw(){
-  background(255);
+  //background(255);
   // ...
 }
 
@@ -47,6 +49,8 @@ void leapOnSwipeGesture(SwipeGesture g, int state){
       break;
     case 3: // Stop
       println("SwipeGesture: " + id);
+      background(255);
+      text("SwipeGesture: " + id, width / 4, height / 2);
       break;
   }
 }
@@ -72,6 +76,8 @@ void leapOnCircleGesture(CircleGesture g, int state){
       break;
     case 3: // Stop
       println("CircleGesture: " + id);
+      background(255);
+      text("CircleGesture: " + id, width / 4, height / 2);
       break;
   }
 
@@ -96,6 +102,8 @@ void leapOnScreenTapGesture(ScreenTapGesture g){
   float   durationSeconds  = g.getDurationInSeconds();
 
   println("ScreenTapGesture: " + id);
+  background(255);
+  text("ScreenTapGesture: " + id, width / 4, height / 2);
 }
 
 
@@ -111,4 +119,6 @@ void leapOnKeyTapGesture(KeyTapGesture g){
   float   durationSeconds  = g.getDurationInSeconds();
 
   println("KeyTapGesture: " + id);
+  background(255);
+  text("KeyTapGesture: " + id, width / 4, height / 2);
 }
